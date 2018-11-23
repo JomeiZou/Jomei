@@ -1,0 +1,256 @@
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 30
+Server version: 8.0.12 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| taobao_mysql       |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use taobao_mysql;
+Database changed
+mysql> create table payrollone(
+    -> id int auto_increment primary key,
+    -> name varchar(30) not null,
+    -> wages int(5) not null);
+ERROR 1050 (42S01): Table 'payrollone' already exists
+mysql> create table idpayroll(
+    -> id int auto_increment primary key,
+    -> name varchar(30) not null,
+    -> wages int(5) not null);
+Query OK, 0 rows affected (0.77 sec)
+
+mysql> create table wdpayroll(
+    -> id int auto_increment primary key,
+    -> name varchar(30) not null,
+    -> wages int(5) not null);
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> desc idpayroll;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(30) | NO   |     | NULL    |                |
+| wages | int(5)      | NO   |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc wdpayroll;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(30) | NO   |     | NULL    |                |
+| wages | int(5)      | NO   |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into idpayroll(id,name,wages)
+    -> values(1,"yyqx1","6000"),
+    -> (2,"yyqx2","7000"),
+    -> (3,"yyqx3","8000"),
+    -> (4,"yyqx4","8000"),
+    -> (5,"yyqx5","10000"),
+    -> (5,"yyqx6","10000"),
+    -> (5,"yyqx6","10000"),
+    -> ^C
+mysql> insert into idpayroll(id,name,wages)
+    -> values(1,"yyqx1","6000"),
+    -> (2,"yyqx2","7000"),
+    -> (3,"yyqx3","8000"),
+    -> (4,"yyqx4","8000"),
+    -> (5,"yyqx5","10000"),
+    -> (6,"yyqx6","10000"),
+    -> (7,"yyqx7","10000"),
+    -> (8,"yyqx8","10000"),
+    -> (9,"yyqx9","12000"),
+    -> (10,"yyqx10","14000");
+Query OK, 10 rows affected (0.16 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from idpayroll;
++----+--------+-------+
+| id | name   | wages |
++----+--------+-------+
+|  1 | yyqx1  |  6000 |
+|  2 | yyqx2  |  7000 |
+|  3 | yyqx3  |  8000 |
+|  4 | yyqx4  |  8000 |
+|  5 | yyqx5  | 10000 |
+|  6 | yyqx6  | 10000 |
+|  7 | yyqx7  | 10000 |
+|  8 | yyqx8  | 10000 |
+|  9 | yyqx9  | 12000 |
+| 10 | yyqx10 | 14000 |
++----+--------+-------+
+10 rows in set (0.00 sec)
+
+mysql> insert into wdpayroll(id,name,wages)
+    -> values(1,"jackson","8000")
+    -> (2,"jachson2","10000")
+    -> (3,"jachson3","10000")
+    -> ^C
+mysql> insert into wdpayroll(id,name,wages)
+    -> values(1,"jackson1","8000"),
+    -> (2,"jachson2","10000"),
+    -> (3,"jachson3","10000"),
+    -> (4,"jachson4","12000"),
+    -> (5,"jachson5","14000"),
+    -> (6,"jachson6","18000"),
+    -> (7,"jachson7","18000"),
+    -> (8,"jachson8","18000"),
+    -> (9,"jachson9","20000"),
+    -> (10,"jachson10","40000");
+Query OK, 10 rows affected (0.17 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from wdpayroll;
++----+-----------+-------+
+| id | name      | wages |
++----+-----------+-------+
+|  1 | jackson1  |  8000 |
+|  2 | jachson2  | 10000 |
+|  3 | jachson3  | 10000 |
+|  4 | jachson4  | 12000 |
+|  5 | jachson5  | 14000 |
+|  6 | jachson6  | 18000 |
+|  7 | jachson7  | 18000 |
+|  8 | jachson8  | 18000 |
+|  9 | jachson9  | 20000 |
+| 10 | jachson10 | 40000 |
++----+-----------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select sum(wages) from idpayroll;
++------------+
+| sum(wages) |
++------------+
+|      95000 |
++------------+
+1 row in set (0.09 sec)
+
+mysql> select max(wages) from idpayroll;
++------------+
+| max(wages) |
++------------+
+|      14000 |
++------------+
+1 row in set (0.05 sec)
+
+mysql> select min(wages) from idpayroll;
++------------+
+| min(wages) |
++------------+
+|       6000 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(wages) from wdpayroll;
++------------+
+| sum(wages) |
++------------+
+|     168000 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select max(wages) from wdpayroll;
++------------+
+| max(wages) |
++------------+
+|      40000 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select min(wages) from wdpayroll;
++------------+
+| min(wages) |
++------------+
+|       8000 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select * from idpayroll order by wages desc;
++----+--------+-------+
+| id | name   | wages |
++----+--------+-------+
+| 10 | yyqx10 | 14000 |
+|  9 | yyqx9  | 12000 |
+|  5 | yyqx5  | 10000 |
+|  6 | yyqx6  | 10000 |
+|  7 | yyqx7  | 10000 |
+|  8 | yyqx8  | 10000 |
+|  3 | yyqx3  |  8000 |
+|  4 | yyqx4  |  8000 |
+|  2 | yyqx2  |  7000 |
+|  1 | yyqx1  |  6000 |
++----+--------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select * from dpayroll order by wages desc limit 0,5;
+ERROR 1146 (42S02): Table 'taobao_mysql.dpayroll' doesn't exist
+mysql> select * from idpayroll order by wages desc limit 0,5;
++----+--------+-------+
+| id | name   | wages |
++----+--------+-------+
+| 10 | yyqx10 | 14000 |
+|  9 | yyqx9  | 12000 |
+|  7 | yyqx7  | 10000 |
+|  8 | yyqx8  | 10000 |
+|  5 | yyqx5  | 10000 |
++----+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from idpayroll order by wages desc limit 5,5;
++----+-------+-------+
+| id | name  | wages |
++----+-------+-------+
+|  8 | yyqx8 | 10000 |
+|  3 | yyqx3 |  8000 |
+|  4 | yyqx4 |  8000 |
+|  2 | yyqx2 |  7000 |
+|  1 | yyqx1 |  6000 |
++----+-------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from wdpayroll order by wages desc limit 0,5;
++----+-----------+-------+
+| id | name      | wages |
++----+-----------+-------+
+| 10 | jachson10 | 40000 |
+|  9 | jachson9  | 20000 |
+|  7 | jachson7  | 18000 |
+|  8 | jachson8  | 18000 |
+|  6 | jachson6  | 18000 |
++----+-----------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from wdpayroll order by wages desc limit 5,5;
++----+----------+-------+
+| id | name     | wages |
++----+----------+-------+
+|  5 | jachson5 | 14000 |
+|  4 | jachson4 | 12000 |
+|  2 | jachson2 | 10000 |
+|  3 | jachson3 | 10000 |
+|  1 | jackson1 |  8000 |
++----+----------+-------+
+5 rows in set (0.00 sec)
+
+mysql>
