@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jackson</title>
+</head>
+<body>
+<h1>《锄禾》</h1>
+<p><b>锄禾日当午，</b></p>
+<p><b>汗滴禾下土。</b></p>
+<p><b>谁知盘中餐，</b></p>
+<p><b>粒粒皆辛苦。</b></p>
+<h1>《静夜思》</h1>
+<p><b>床前明月光，</b></p>
+<p><b>疑是地上霜。</b></p>
+<p><b>举头望明月，</b></p>
+<p><b>低头思故乡。</b></p>
+</body>
